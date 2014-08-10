@@ -1,5 +1,5 @@
-function HelloController($scope){
+function HelloController($scope, $location){
   $scope.greeting = {
-    text: 'Hola'
+    text: 'Hola',
   }
 }
