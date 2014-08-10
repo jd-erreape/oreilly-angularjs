@@ -4,12 +4,13 @@
 </head>
 <body ng-controller='CartController'>
 <h1>Your Shopping Cart</h1>
-<div ng-repeat='item in items'>
+<div ng-repeat='item in items' ng-click='selectItem($index)'>
   <span>{{item.title}}</span>
   <input ng-model='item.quantity'>
   <span>{{item.price | currency}}</span>
   <span>{{item.price * item.quantity | currency}}</span>
   <button ng-click="remove($index)">Remove</button>
+  <span ng-show='selectedItem == $index'>Selected!</span>
 </div>
 <p> Total: {{total() | currency}}
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
@@ -30,6 +31,11 @@ function CartController($scope) {
       return previousValue + (currentValue.quantity * currentValue.price)    
     }, 0)
     return total;
+  };
+
+  $scope.selectItem = function(row){
+    console.log(row);
+    $scope.selectedItem = row;
   }
 }
 </script>
